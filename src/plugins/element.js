@@ -6,7 +6,8 @@ import {
   CheckboxGroup,
   Input,
   InputNumber,
-  Switch
+  Switch,
+  Message
 } from 'element-ui'
 
 Vue.use(Button)
@@ -16,3 +17,5 @@ Vue.use(CheckboxGroup)
 Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(Switch)
+
+Vue.prototype.$message = Message

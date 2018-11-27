@@ -59,16 +59,12 @@
           @blur="createPasswordBase"
           v-model="exclude"
           placeholder="排除字符"
-          size="medium"
+          size="small"
         ></el-input>
       </div>
       <div class="passwd-panel-item">
         <span class="title">密码长度</span>
-        <el-input
-          v-model="passwordLen"
-          placeholder="密码长度"
-          size="medium"
-        ></el-input>
+        <el-input-number size="small" v-model="passwordLen" :min="6" :max="512" label="密码长度"></el-input-number>
       </div>
       <el-button @click="generatePassword" class="passwd-panel--btn" type="primary">生成密码</el-button>
     </div>
@@ -203,6 +199,7 @@ export default {
       color: #8492a6;
       border-bottom: 1px solid #e8e8e8;
 
+      .el-input-number,
       .el-input {
         width: 110px;
       }

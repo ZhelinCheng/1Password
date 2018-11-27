@@ -79,7 +79,11 @@ let characterBase = ['!', '@', '#', '$', '%', '&', '*', '?', '_']
 export default {
   name: 'Password',
   data () {
-    return {
+    let saveConfig = localStorage.getItem('1Password')
+    if (saveConfig && saveConfig !== 'null') {
+      saveConfig = JSON.parse(saveConfig)
+    }
+    return saveConfig || {
       number: true,
       uppercaseLetter: true,
       lowerLetters: true,
@@ -97,6 +101,10 @@ export default {
     this.copyPassword()
   },
   methods: {
+    saveConfig () {
+      // 保存配置
+      localStorage.setItem('1Password', JSON.stringify(this._data))
+    },
     copyPassword () {
       // 复制密码
       let clipboard = new ClipboardJS('#j-copy')
@@ -137,6 +145,8 @@ export default {
       if (!this.repeat) {
         this.createPasswordBase()
       }
+
+      this.saveConfig()
     },
 
     randomNumBoth (Min, Max) {

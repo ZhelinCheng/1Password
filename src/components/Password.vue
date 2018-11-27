@@ -207,7 +207,7 @@ export default {
 
     .passwd-content {
       margin: 16px 0;
-      padding: 14px;
+      padding: 10px;
       border-radius: 6px;
       color: #67c23a;
       background-color: #f0f9eb;

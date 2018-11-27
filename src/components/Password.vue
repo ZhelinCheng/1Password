@@ -1,7 +1,7 @@
 <template>
   <div class="password">
     <h1>1Password</h1>
-    <div v-if="passwordContent" class="passwd-content">
+    <div id="j-copy" :data-clipboard-text="passwordContent" class="passwd-content">
       {{passwordContent}}
     </div>
     <div class="passwd-panel">
@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import ClipboardJS from 'clipboard'
+
 let passwordBase = []
 let characterBase = ['!', '@', '#', '$', '%', '&', '*', '?', '_']
 export default {
@@ -89,13 +91,30 @@ export default {
       repeat: true,
       exclude: '',
       passwordLen: 16,
-      passwordContent: ''
+      passwordContent: '等待生成'
     }
   },
   created () {
     this.createPasswordBase()
   },
+  mounted () {
+    this.copyPassword()
+  },
   methods: {
+    copyPassword () {
+      // 复制密码
+      let clipboard = new ClipboardJS('#j-copy')
+      clipboard.on('success', (e) => {
+        this.$message({
+          message: '密码复制成功',
+          type: 'success'
+        })
+        e.clearSelection()
+      })
+      clipboard.on('error', () => {
+        this.$message.error('密码复制失败，请手动复制。')
+      })
+    },
     generatePassword () {
       // 生成密码
       let maxLen = passwordBase.length - 1
@@ -197,7 +216,7 @@ export default {
       background-color: #f0f9eb;
       border: 1px solid #c2e7b0;
       cursor: pointer;
-      word-wrap:break-word;
+      word-wrap: break-word;
     }
 
     .passwd-panel--btn {

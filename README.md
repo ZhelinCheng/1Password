@@ -1,29 +1,15 @@
-# 1Password
+# umi project
 
-## Project setup
-```
-npm install
-```
+## Getting Started
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+Install dependencies,
+
+```bash
+$ yarn
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Start the dev server,
 
-### Run your tests
+```bash
+$ yarn start
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
